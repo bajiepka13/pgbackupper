@@ -20,7 +20,7 @@ public class ShellCommandService {
     @Autowired
     AsynchronousService service;
 
-    private String execute(String command, boolean runAsThread) {
+    public String execute(String command, boolean runAsThread) {
         StringBuffer stringBuffer = new StringBuffer();
 
         try {

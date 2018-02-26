@@ -131,6 +131,10 @@ public class PathSettings {
 
     }
 
+    public Properties getProperties() {
+        return pathCheck.getProperties();
+    }
+
     /**
      *
      */
@@ -173,6 +177,10 @@ public class PathSettings {
             this.currentOperatingSystem = currentOperatingSystem;
 
             if (this.fileConfiguration.getProperties().isEmpty()) setDefaultPathVariables(fileConfiguration);
+        }
+
+        public Properties getProperties() {
+            return fileConfiguration.getProperties();
         }
 
         /**

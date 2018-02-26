@@ -4,6 +4,7 @@ import org.bajiepka.pgbackupper.domain.CorporateBaseCredentials;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -14,7 +15,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 @Configuration
 @EnableScheduling
 @EnableAsync
-//@PropertySource("classpath:configuration.properties")
+@PropertySource("classpath:/configuration.properties")
 @ComponentScan(basePackages = "org.bajiepka")
 public class ApplicationConfig {
 
