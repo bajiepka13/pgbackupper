@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    ...
+</head>
+<body>
+...
+<div th:fragment="header">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" th:href="@{/}">
+                    <span class="glyphicon glyphicon-leaf"></span>
+                    PgBackupper v. 1.0</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#" th:href="@{/files}">Файлы</a></li>
+                    <li><a th:href="@{/corporate/bases}">Базы 1С:Предприятия</a></li>
+                    <!--<li><a th:href="@{/blog/articles}">Список статей</a></li>-->
+                    <!--<li class="dropdown">-->
+                    <!--<a class="dropdown-toggle" data-toggle="dropdown" href="#">Core-->
+                    <!--<span class="caret"></span></a>-->
+                    <!--<ul class="dropdown-menu">-->
+                    <!--<li class="dropdown-header">Сортировки</li>-->
+                    <!--<li><a th:href="@{/blog/core/sort/bubble}">&#9900; Пузырьком</a></li>-->
+                    <!--<li><a th:href="@{/blog/core/sort/selection}">&#9900; Выборкой</a></li>-->
+                    <!--</ul>-->
+                    <!--</li>-->
+                </ul>
+                <!--<ul class="nav navbar-right">-->
+                <!--<li ><a href="/blog/login"><span class="glyphicon glyphicon-log-in"></span>  Войти</a></li>-->
+                <!--</ul>-->
+            </div>
+        </div>
+    </nav>
+</div>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head th:replace="fragments/init :: head">
+    <title>Заглавная страница блога</title>
+</head>
+<body>
+
+<!-- Шаблон Header'а -->
+<div th:replace="fragments/header :: header">
+    ...
+</div>
+
+<!--<div class="container-fluid text-center">-->
+<div class="container-fluid">
+
+    <!--<div class="row content">-->
+    <!--<div class="clo-sm-8 text-left">-->
+
+    <h2 th:text="${base.name}">...</h2>
+    <p>Свойства базы 1С:Предприятие:</p>
+
+    <div class="row content">
+        <div class="col-md-6">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Свойство</th>
+                    <th>Значение</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Строка соединения с базой:</td>
+                    <td th:text="${base.connect}">Doe</td>
+                </tr>
+                <tr>
+                    <td>Уникальный идентификатор:</td>
+                    <td th:text="${base.id}">Moe</td>
+                </tr>
+                <tr>
+                    <td>Порядковый номер:</td>
+                    <td th:text="${base.order}">Dooley</td>
+                </tr>
+                <tr>
+                    <td>Каталог базы:</td>
+                    <td th:text="${base.folder}">Dooley</td>
+                </tr>
+                <tr>
+                    <td>Порядковый номер в дереве:</td>
+                    <td th:text="${base.orderInTree}">Dooley</td>
+                </tr>
+                <tr>
+                    <td>Внешняя:</td>
+                    <td th:text="${base.external}">Dooley</td>
+                </tr>
+                <tr>
+                    <td>Скорость соединения:</td>
+                    <td th:text="${base.speed}">Dooley</td>
+                </tr>
+
+                <tr>
+                    <td>Приложение:</td>
+                    <td th:text="${base.app}">Dooley</td>
+                </tr>
+                <tr>
+                    <td>WA:</td>
+                    <td th:text="${base.wa}">Dooley</td>
+                </tr>
+                <tr>
+                    <td>Версия:</td>
+                    <td th:text="${base.version}">Dooley</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--<div class="col-md-1">-->
+
+        <!--</div>-->
+        <div class="col-md-4">
+
+            <table>
+                <tbody>
+                <tr>
+                    <td>
+                        <div th:if="${base.fileDatabase}">
+                            <img th:src="@{/images/file-base-image.jpg}" style="width: 100px; height: 100px"
+                                 alt="Файловая база"/>
+                        </div>
+                        <div th:unless="${base.fileDatabase}">
+                            <img th:src="@{/images/client-server-base-image.png}" style="width: 100px; height: 100px"
+                                 alt="Клиент-серверная база"/>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="panel panel-primary">
+                            <div class="panel-body">
+                                <h6>Авторизируйтесь под учётной записью 1С:Предприятия с правами на запуск
+                                    конфигуратора,
+                                    для того чтобы выполнять выгрузку файлов</h6>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <form action="#" th:action="@{/corporate/maintenance(id=${base.id})}" method="post"
+                              th:object="${credentials}">
+                            <div class="form-group">
+                                <label for="name">Пользователь:</label>
+                                <input id="name" class="form-control" type="text" th:value="${credentials.name}"
+                                       th:field="*{name}"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Пароль:</label>
+                                <input id="password" class="form-control" type="password"
+                                       th:value="${credentials.password}" th:field="*{password}"/>
+                            </div>
+
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="active" th:field="*{disconnectUsers}"/>Отключить
+                                    пользователей</label>
+                            </div>
+
+                            <button type="submit" class="btn btn-default" name="action" value="database">Выгрузить DT
+                            </button>
+                            <button type="submit" class="btn btn-default" name="action" value="configuration">Выгрузить
+                                CF
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <!--</div>-->
+    <!--</div>-->
+
+</div>
+
+<!-- Шаблон Footer'а -->
+<div th:replace="fragments/footer :: footer">...</div>
+
+</body>
+</html>

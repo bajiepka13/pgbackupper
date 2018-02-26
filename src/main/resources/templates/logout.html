@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head th:replace="fragments/init :: head">
+    <title>Заглавная страница блога</title>
+</head>
+<body>
+
+<!-- Шаблон Header'а -->
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container-fluid text-center">
+    <div class="row content">
+        <div class="clo-sm-8 text-left">
+            <form th:action="@{/blog/login}" method="post">
+                <fieldset>
+                    <h1>Введите свои учётные данные</h1>
+                    <div th:if="${param:error}">
+                        <div class="alert alert-danger">
+                            <p>Вы ввели некорректные данные.</p>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input id="username" type="text" class="form-control" name="username" placeholder="Логин"
+                               required="required"/>
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input id="password" type="password" class="form-control" name="password" placeholder="Пароль"
+                               required="required"/>
+                    </div>
+                    <button type="submit" class="btn btn-success">Сохранить</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Шаблон Footer'а -->
+<div th:replace="fragments/footer :: footer">...</div>
+
+</body>
+</html>

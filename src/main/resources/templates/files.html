@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head th:replace="fragments/init :: head">
+    <title>Заглавная страница блога</title>
+</head>
+<body>
+
+<!-- Шаблон Header'а -->
+<div th:replace="fragments/header :: header">
+    ...
+</div>
+
+<div class="container-fluid text-center">
+    <div class="row content">
+        <div class="clo-sm-8 text-left">
+
+            <table class="table table-striped">
+                <caption></caption>
+                <thead>
+                <tr>
+                    <th>ИмяФайла</th>
+                    <th>Размер, Кб</th>
+                    <th>Скачать</th>
+                    <th>Удалить</th>
+                    <th>Просмотр</th>
+                </tr>
+                </thead>
+                <tbody>
+                <div th:each="file : ${files}">
+                    <tr>
+                        <td th:if="${file.getFileType() == T(org.bajiepka.pgbackupper.domain.MaintenanceFile.FileTypes).CF}">
+                            <img th:text="${file.getName()}" th:src="@{/images/cf_thumbnail.png}"
+                                 style="width: 32px; height: 32px"/>
+                        </td>
+                        <td th:if="${file.getFileType() == T(org.bajiepka.pgbackupper.domain.MaintenanceFile.FileTypes).DT}">
+                            <img th:text="${file.getName()}" th:src="@{/images/dt_thumbnail.png}"
+                                 style="width: 32px; height: 32px"/>
+                        </td>
+                        <td th:if="${file.getFileType() == T(org.bajiepka.pgbackupper.domain.MaintenanceFile.FileTypes).EPF}">
+                            <img th:text="${file.getName()}" th:src="@{/images/epf_thumbnail.png}"
+                                 style="width: 32px; height: 32px"/>
+                        </td>
+                        <td th:if="${file.getFileType() == T(org.bajiepka.pgbackupper.domain.MaintenanceFile.FileTypes).ERF}">
+                            <img th:text="${file.getName()}" th:src="@{/images/erf_thumbnail.png}"
+                                 style="width: 32px; height: 32px"/>
+                        </td>
+                        <td th:text="${file.getName()}"
+                            th:if="${file.getFileType() == T(org.bajiepka.pgbackupper.domain.MaintenanceFile.FileTypes).OTHER}"
+                            style="width: 32px; height: 32px">
+                        </td>
+
+                        <td><p th:text="${file.getAdaptedSize()}"></p></td>
+                        <td>
+                            <a href="#" th:href="@{/files/download(file=${file})}">
+                                <span class="glyphicon glyphicon-download"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#" th:href="@{/files/delete(file=${file})}">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#" th:href="@{/file(file=${file})}">
+                                <span class="glyphicon glyphicon-th-list"></span>
+                            </a>
+                        </td>
+                    </tr>
+                </div>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!--<div class="row-fluid">-->
+<!--<div class="accordion-toggle" data-toggle="collapse" data-target="#collapseThree">-->
+<!--<div class="span1">file</div>-->
+<!--<div class="span3">Mark</div>-->
+<!--<div class="span3">Otto</div>-->
+<!--<div class="span3">@mdo</div>-->
+<!--</div>-->
+<!--<div class="span1">-->
+<!--<button type="button" class="btn btn-primary"><i class="icon-search icon-white"></i></button>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div id="collapseThree" class="row-fluid collapse in">-->
+<!--<div class="span1"></div>-->
+<!--<div class="span9">-->
+<!--Details 1-->
+<!--Details 2-->
+<!--Details 3-->
+<!--</div>-->
+<!--</div>-->
+
+<!-- Шаблон Footer'а -->
+<div th:replace="fragments/footer :: footer">...</div>
+
+</body>
+</html>

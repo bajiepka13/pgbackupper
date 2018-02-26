@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head th:replace="fragments/init :: head">
+    <title>Заглавная страница блога</title>
+</head>
+<body>
+
+<!-- Шаблон Header'а -->
+<div th:replace="fragments/header :: header">
+    ...
+</div>
+
+<div class="container-fluid text-center">
+    <div class="row content">
+        <div class="clo-sm-8 text-left">
+            <h1>Pgbackupper</h1>
+            <p>
+                Приложение для работы связки PostgreSQL + Сервер "1C:Предериятие".
+            </p>
+            <div>
+                <h3>26.02.2018 - Добавлены иконки по типам файлов и типам баз.</h3>
+                Подготовлены классы для выполнения psql команд.
+            </div>
+            <div>
+                <h3>17.02.2018 - Страница файла и тестовая выгрузка .dt</h3>
+                У каждого файла из списка теперь есть форма элемента
+            </div>
+            <div>
+                <h3>12.02.2018 - Начало работы над проектом</h3>
+                Добавлен каталог файлов по-умолчанию. <b><p th:text="${message}">Message placeholder</p></b>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Шаблон Footer'а -->
+<div th:replace="fragments/footer :: footer">...</div>
+
+</body>
+</html>

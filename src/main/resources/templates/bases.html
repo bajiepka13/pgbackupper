@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head th:replace="fragments/init :: head">
+    <title>Базы 1С:Предприятия</title>
+</head>
+<body>
+
+<!-- Шаблон Header'а -->
+<div th:replace="fragments/header :: header">
+    ...
+</div>
+
+<div class="container-fluid text-center">
+    <div class="row content">
+        <div class="clo-sm-8 text-left">
+
+            <h2>Базы 1С:Предриятия</h2>
+
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#">Локальные базы</a></li>
+                <li><a href="#">Клиент-серверные</a></li>
+            </ul>
+
+            <table class="table table-striped">
+                <caption></caption>
+                <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Идентификатор</th>
+                </tr>
+                </thead>
+                <tbody>
+                <div th:each="base : ${bases}">
+                    <tr>
+                        <td th:if="${base.fileDatabase}">
+                            <img th:src="@{/images/file-base-image.jpg}"
+                                 style="width: 32px; height: 32px" alt="Файловая база"/>
+                            <a href="#" th:text="${base.name}" th:href="@{/corporate/base(id=${base.id})}"></a>
+                        </td>
+                        <td th:unless="${base.fileDatabase}">
+                            <img th:src="@{/images/client-server-base-image.png}"
+                                 style="width: 32px; height: 32px" alt="Клиент-серверная база"/>
+                            <a href="#" th:text="${base.name}" th:href="@{/corporate/base(id=${base.id})}"></a>
+                        </td>
+                        <td><p th:text="${base.id}"></p></td>
+                    </tr>
+                </div>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<!-- Шаблон Footer'а -->
+<div th:replace="fragments/footer :: footer">...</div>
+
+</body>
+</html>
