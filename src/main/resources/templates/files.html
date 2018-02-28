@@ -44,9 +44,9 @@
                             <img th:text="${file.getName()}" th:src="@{/images/erf_thumbnail.png}"
                                  style="width: 32px; height: 32px"/>
                         </td>
-                        <td th:text="${file.getName()}"
-                            th:if="${file.getFileType() == T(org.bajiepka.pgbackupper.domain.MaintenanceFile.FileTypes).OTHER}"
-                            style="width: 32px; height: 32px">
+                        <td th:if="${file.getFileType() == T(org.bajiepka.pgbackupper.domain.MaintenanceFile.FileTypes).OTHER}">
+                            <img th:text="${file.getName()}" th:src="@{/images/plain-file.jpg}"
+                                 style="width: 32px; height: 32px"/>
                         </td>
 
                         <td><p th:text="${file.getAdaptedSize()}"></p></td>
@@ -73,12 +73,24 @@
         <div class="col-md-4 text-left" style="padding: 80px 0px 0px 30px">
             <img th:src="@{/images/upload-file.png}"
                  alt="Загрузить файл на сервер"/>
+
             <div class="form-group">
-                <label for="FileInput">Загрузка произвольного файла</label>
-                <input type="file" class="form-control-file" id="FileInput" aria-describedby="fileHelp"/>
-                <small id="fileHelp" class="form-text text-muted">Выберите файл для загрузки в файловый катало
-                    приложения. После загрузки файл автоматически появится в этом списке.
-                </small>
+                <form method="post" enctype="multipart/form-data" action="/upload">
+                    <label for="FileInput">Загрузка произвольного файла</label>
+                    <input type="file" class="form-control-file" name="file" id="FileInput"
+                           aria-describedby="fileHelp"/>
+                    <small id="fileHelp" class="form-text text-muted">Выберите файл для загрузки в файловый катало
+                        приложения. После загрузки файл автоматически появится в этом списке.
+                    </small>
+                    <button type="submit" class="btn btn-default">Загрузить на сервер</button>
+                </form>
+            </div>
+            <div th:if="${message != null}">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h5 th:text="${message}"></h5>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
